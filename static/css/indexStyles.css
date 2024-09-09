@@ -118,19 +118,51 @@ body {
     justify-content: center;
 }
 
-#upgrade-1 {
+#upgrade-container {
+    display: grid;
+    grid-template-columns: auto;
+}
+
+.three-by-one-upgrades {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: auto auto auto;
+}
+
+.three-by-one-upgrades > button {
+    margin: 80px 60px;
+}
+
+
+
+.upgrade-button-class-border {
+    border: 4px red solid;
+}
+
+.upgrade-button-class {
+    margin: auto;
     padding: 20px;
     background-color: whitesmoke;
-    border: 4px red solid;
     rotate: 45deg;
-    width: 160px;
-    height: 160px;
+    width: 180px;
+    height: 180px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#upgrade-1 > p {
+.upgrade-button-class-locked {
+    border: 4px solid black
+}
+
+
+.upgrade-terms {
+    font-size: small; 
+    font-weight: lighter;
+}
+
+
+.upgrade-button-class > p {
     margin: 0;
     padding-top: 0px;
     padding-left: 0px;
@@ -140,12 +172,12 @@ body {
     text-align: center;
 }
 
-#upgrade-1:hover + div > div {
+.upgrade-button-class:hover + div > div {
     opacity: 1;
 }
 
 
-#upgrade-1-log-cost-container {
+.upgrade-cost-item-container {
     display: grid;
     grid-template-columns: auto auto;
     grid-template-rows: auto;
@@ -160,20 +192,22 @@ body {
     height: fit-content;
 }
 
-#upgrade-1-log-cost-container > * {
+.upgrade-cost-item-container > * {
     padding: 2px
 }
 
-#upgrade-1-log-cost-container > p {
+.upgrade-cost-item-container > p {
     padding-right: 6px;
     margin: 0;
 }
 
-#upgrade-1:hover {
+.upgrade-button-class-border:hover {
     border-color: orange;
 }
 
-
+.green-border {
+    border: green 4px solid;
+}
 
 /*#permanent-upgrades {
     display: grid; 

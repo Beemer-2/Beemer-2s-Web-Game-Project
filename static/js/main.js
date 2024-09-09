@@ -17,6 +17,11 @@ let gold = 0;
 let iron = 0;
 let planks = 0;
 
+let boughtSturdierAxeUpgrade = false;
+
+let logMultiplier = 1;
+let workerMultiplier = 1;
+
 
 //Prepares arrays for disabling and enabling of menus and their items
 let shopElements = document.getElementById("shop").getElementsByTagName('*');
@@ -207,11 +212,39 @@ document.getElementById("purchase-log-cabin-button").addEventListener("click", f
 })
 
 
+
+
+
+
+
+document.getElementById("sturdier-axe-upgrade").addEventListener("click", function() {
+    if (logs >= 300 && !boughtSturdierAxeUpgrade) {
+        logs -= 300;
+        logMultiplier += 0.2;
+        boughtSturdierAxeUpgrade = true;
+        document.getElementById("sturdier-axe-upgrade").classList.add("green-border");
+        document.getElementById("sturdier-axe-upgrade").classList.remove("upgrade-button-class-border");
+        document.getElementById("log-upgrade-cost-container").style.visibility = "hidden";
+        document.getElementById("strength-training-upgrade").classList.remove("upgrade-button-class-locked");
+        document.getElementById("strength-training-upgrade").classList.add("upgrade-button-class-border");
+        document.getElementById("log-cabin-rearrangement-upgrade").classList.remove("upgrade-button-class-locked");
+        document.getElementById("log-cabin-rearrangement-upgrade").classList.add("upgrade-button-class-border");
+        document.getElementById("bigger-minecart-upgrade").classList.remove("upgrade-button-class-locked");
+        document.getElementById("bigger-minecart-upgrade").classList.add("upgrade-button-class-border");
+    }
+});
+
+
+
+
+
+
+
 //Adds resources recursively every x milliseconds
 function addResources() {
     
-    logs += 1 * numberOfLumberjacks;
-    document.getElementById("logs").innerHTML = "Logs: " + logs; 
+    logs += 1 * numberOfLumberjacks * (logMultiplier + workerMultiplier);
+    document.getElementById("logs").innerHTML = "Logs: " + (Math.round(logs * 100)) / 100; 
 
 
     if (numberOfMines >= 1) {
@@ -251,8 +284,21 @@ function addResources() {
 
 
     
-    setTimeout(() => {addResources()}, 100);
+    setTimeout(() => {addResources()}, 1);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 addResources();
 
