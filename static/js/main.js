@@ -224,7 +224,7 @@ document.getElementById("sturdier-axe-upgrade").addEventListener("click", functi
         boughtSturdierAxeUpgrade = true;
         document.getElementById("sturdier-axe-upgrade").classList.add("green-border");
         document.getElementById("sturdier-axe-upgrade").classList.remove("upgrade-button-class-border");
-        document.getElementById("log-upgrade-cost-container").style.visibility = "hidden";
+        document.getElementById("sturdier-axe-log-upgrade-cost-container").style.visibility = "hidden";
         document.getElementById("strength-training-upgrade").classList.remove("upgrade-button-class-locked");
         document.getElementById("strength-training-upgrade").classList.add("upgrade-button-class-border");
         document.getElementById("log-cabin-rearrangement-upgrade").classList.remove("upgrade-button-class-locked");
@@ -284,7 +284,7 @@ function addResources() {
 
 
     
-    setTimeout(() => {addResources()}, 1);
+    setTimeout(() => {addResources()}, 300);
 }
 
 
@@ -312,7 +312,7 @@ function addVillagers() {
         document.getElementById("villager-count").innerHTML = "Villagers: " + currentVillagers;
     }
 
-    setTimeout(() => {addVillagers()}, 3000 / numberOfLogCabins);
+    setTimeout(() => {addVillagers()}, 30000 / numberOfLogCabins);
 }
     
     

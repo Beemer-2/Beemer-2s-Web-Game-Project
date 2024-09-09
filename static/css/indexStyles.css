@@ -129,7 +129,7 @@ body {
     grid-template-columns: auto auto auto;
 }
 
-.three-by-one-upgrades > button {
+.three-by-one-upgrades > div > button {
     margin: 80px 60px;
 }
 
@@ -244,9 +244,9 @@ body {
     padding: 2px
 }
 
-.purchase-items-container > p, .purchase-items-container > p > span, #upgrade-1-cost {
+.purchase-items-container > p, .purchase-items-container > p > span {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: bold;
+    font-weight: 500;
     font-size: larger;
 }
 
