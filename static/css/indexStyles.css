@@ -106,19 +106,79 @@ body {
     position: absolute;
     background-color: gray;
     opacity: 0.5;
-    width: 90%;
-    height: 90%;
+    width: 100%;
+    height: 100%;
     left: 0;
     top: 0;
     bottom: 0;
     right: 0;
     margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#permanent-upgrades {
+#upgrade-1 {
+    padding: 20px;
+    background-color: whitesmoke;
+    border: 4px red solid;
+    rotate: 45deg;
+    width: 160px;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#upgrade-1 > p {
+    margin: 0;
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 3px;
+    rotate: -45deg;
+    text-align: center;
+}
+
+#upgrade-1:hover + div > div {
+    opacity: 1;
+}
+
+
+#upgrade-1-log-cost-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+    align-items: center;
+    background-color: whitesmoke;
+    border: 4px solid black;
+    opacity: 0;
+    position: relative;
+    justify-content: center;
+    width: fit-content;
+    margin: auto;
+    height: fit-content;
+}
+
+#upgrade-1-log-cost-container > * {
+    padding: 2px
+}
+
+#upgrade-1-log-cost-container > p {
+    padding-right: 6px;
+    margin: 0;
+}
+
+#upgrade-1:hover {
+    border-color: orange;
+}
+
+
+
+/*#permanent-upgrades {
     display: grid; 
     grid-template-columns: 1fr 1fr;
-}
+}*/
 
 .purchase-button-container {
     display: grid;
@@ -150,7 +210,7 @@ body {
     padding: 2px
 }
 
-.purchase-items-container > p, .purchase-items-container > p > span {
+.purchase-items-container > p, .purchase-items-container > p > span, #upgrade-1-cost {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold;
     font-size: larger;
