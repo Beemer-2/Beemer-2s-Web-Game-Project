@@ -127,10 +127,11 @@ body {
     display: grid;
     grid-template-rows: auto;
     grid-template-columns: auto auto auto;
+    margin: 80px
 }
 
 .three-by-one-upgrades > div > button {
-    margin: 80px 60px;
+    margin: 0px 60px;
 }
 
 
@@ -140,7 +141,7 @@ body {
 }
 
 .upgrade-button-class {
-    margin: auto;
+    margin: 0px auto;
     padding: 20px;
     background-color: whitesmoke;
     rotate: 45deg;
@@ -176,7 +177,6 @@ body {
     opacity: 1;
 }
 
-
 .upgrade-cost-item-container {
     display: grid;
     grid-template-columns: auto auto;
@@ -188,7 +188,7 @@ body {
     position: relative;
     justify-content: center;
     width: fit-content;
-    margin: auto;
+    margin: 0px auto;
     height: fit-content;
 }
 
@@ -221,7 +221,7 @@ body {
 }
 
 .purchase-buttons {
-    padding: 20px 50px;
+    padding: 20px 80px;
     margin: 0px 40px;
     border: 6px solid black;
     border-radius: 8px;
@@ -302,5 +302,5 @@ body {
 #city > * {
     width: fit-content;
     height: fit-content;
-    padding: 0px;
+    padding: 1px 0px;
 }

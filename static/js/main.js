@@ -18,9 +18,14 @@ let iron = 0;
 let planks = 0;
 
 let boughtSturdierAxeUpgrade = false;
+let boughtStrengthTrainingUpgrade = false;
+let boughtLogCabinRearrangementUpgrade = false;
+let boughtBiggerMinecartUpgrade = false;
 
-let logMultiplier = 1;
-let workerMultiplier = 1;
+let logMultiplier = 0;
+//let workerMultiplier = 1; //Replaced with global multiplier temporarily
+let globalMultiplier = 1;
+let stoneMultiplier = 0;
 
 
 //Prepares arrays for disabling and enabling of menus and their items
@@ -201,7 +206,7 @@ document.getElementById("purchase-log-cabin-button").addEventListener("click", f
     if (logs >= 200 * numberOfLogCabins) {
         logs -= 200 * numberOfLogCabins;
         numberOfLogCabins += 1;
-        housingSpace += 3;
+        housingSpace += (3 + (boughtLogCabinRearrangementUpgrade ? 1 : 0));
         document.getElementById("housing-space").innerHTML = "Housing Space: " + housingSpace;
 
         let houseImage = document.createElement("img");
@@ -212,10 +217,7 @@ document.getElementById("purchase-log-cabin-button").addEventListener("click", f
 })
 
 
-
-
-
-
+//Upgrades
 
 document.getElementById("sturdier-axe-upgrade").addEventListener("click", function() {
     if (logs >= 300 && !boughtSturdierAxeUpgrade) {
@@ -224,7 +226,7 @@ document.getElementById("sturdier-axe-upgrade").addEventListener("click", functi
         boughtSturdierAxeUpgrade = true;
         document.getElementById("sturdier-axe-upgrade").classList.add("green-border");
         document.getElementById("sturdier-axe-upgrade").classList.remove("upgrade-button-class-border");
-        document.getElementById("sturdier-axe-log-upgrade-cost-container").style.visibility = "hidden";
+        document.getElementById("sturdier-axe-upgrade-cost-container").style.visibility = "hidden";
         document.getElementById("strength-training-upgrade").classList.remove("upgrade-button-class-locked");
         document.getElementById("strength-training-upgrade").classList.add("upgrade-button-class-border");
         document.getElementById("log-cabin-rearrangement-upgrade").classList.remove("upgrade-button-class-locked");
@@ -235,31 +237,74 @@ document.getElementById("sturdier-axe-upgrade").addEventListener("click", functi
 });
 
 
+document.getElementById("strength-training-upgrade").addEventListener("click", function() {
+    if (logs >= 3000 && stone >= 400 && !boughtStrengthTrainingUpgrade && boughtSturdierAxeUpgrade) {
+        logs -= 3000;
+        stone -= 400;
+        globalMultiplier += 0.2;
+        boughtStrengthTrainingUpgrade = true;
+        document.getElementById("strength-training-upgrade").classList.add("green-border");
+        document.getElementById("strength-training-upgrade").classList.remove("upgrade-button-class-border");
+        document.getElementById("strength-training-upgrade-cost-container").style.visibility = "hidden";
+    }
+});
+
+
+document.getElementById("log-cabin-rearrangement-upgrade").addEventListener("click", function() {
+    if (logs >= 12000 && !boughtLogCabinRearrangementUpgrade && boughtSturdierAxeUpgrade) {
+        logs -= 12000;
+        globalMultiplier += 0.2;
+        console.log("ran")
+        housingSpace += 1 * numberOfLogCabins;
+        document.getElementById("housing-space").innerHTML = "Housing Space: " + housingSpace;
+        boughtLogCabinRearrangementUpgrade = true;
+        document.getElementById("log-cabin-rearrangement-upgrade").classList.add("green-border");
+        document.getElementById("log-cabin-rearrangement-upgrade").classList.remove("upgrade-button-class-border");
+        document.getElementById("log-cabin-rearrangement-upgrade-cost-container").style.visibility = "hidden";
+    }
+});
+
+
+document.getElementById("bigger-minecart-upgrade").addEventListener("click", function() {
+    if (logs >= 4000 && stone >= 2000 && iron >= 300 && !boughtBiggerMinecartUpgrade && boughtSturdierAxeUpgrade) {
+        logs -= 4000;
+        stone -= 2000;
+        iron -= 300
+        boughtBiggerMinecartUpgrade = true;
+        stoneMultiplier += 0.2;
+        document.getElementById("bigger-minecart-upgrade").classList.add("green-border");
+        document.getElementById("bigger-minecart-upgrade").classList.remove("upgrade-button-class-border");
+        document.getElementById("bigger-minecart-upgrade-cost-container").style.visibility = "hidden";
+        
+    }
+
+});
 
 
 
+console.log(Math.round((1.2 % 1) * 100) / 100)
 
 
 //Adds resources recursively every x milliseconds
 function addResources() {
     
-    logs += 1 * numberOfLumberjacks * (logMultiplier + workerMultiplier);
+    logs += 1 * numberOfLumberjacks * (logMultiplier + globalMultiplier);
     document.getElementById("logs").innerHTML = "Logs: " + (Math.round(logs * 100)) / 100; 
 
 
     if (numberOfMines >= 1) {
-        gold += 0.08 * numberOfMines;
+        gold += 0.08 * numberOfMines * (stoneMultiplier + globalMultiplier);
         document.getElementById("gold").innerHTML = "Gold: " + (Math.round(gold * 100)) / 100; 
 
-        stone += 0.2 * numberOfMines;
+        stone += 0.2 * numberOfMines * (globalMultiplier + stoneMultiplier);
         document.getElementById("stone").innerHTML = "Stone: " + (Math.round(stone * 100)) / 100; 
 
-        iron += 0.02 * numberOfMines;
+        iron += 0.02 * numberOfMines * globalMultiplier;
         document.getElementById("iron").innerHTML = "Iron: " + (Math.round(iron * 100)) / 100; 
     }
 
     if (numberOfSawmills >= 1) {
-        planks += 0.02 * numberOfSawmills;
+        planks += 0.02 * numberOfSawmills * globalMultiplier;
         document.getElementById("planks").innerHTML = "Planks: " + (Math.round(planks * 100)) / 100; 
     }
 
@@ -284,7 +329,7 @@ function addResources() {
 
 
     
-    setTimeout(() => {addResources()}, 300);
+    setTimeout(() => {addResources()}, 1);
 }
 
 
@@ -312,7 +357,7 @@ function addVillagers() {
         document.getElementById("villager-count").innerHTML = "Villagers: " + currentVillagers;
     }
 
-    setTimeout(() => {addVillagers()}, 30000 / numberOfLogCabins);
+    setTimeout(() => {addVillagers()}, 300 / numberOfLogCabins);
 }
     
     
