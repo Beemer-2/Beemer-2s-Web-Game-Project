@@ -329,7 +329,7 @@ function addResources() {
 
 
     
-    setTimeout(() => {addResources()}, 1);
+    setTimeout(() => {addResources()}, 500);
 }
 
 
@@ -357,7 +357,7 @@ function addVillagers() {
         document.getElementById("villager-count").innerHTML = "Villagers: " + currentVillagers;
     }
 
-    setTimeout(() => {addVillagers()}, 300 / numberOfLogCabins);
+    setTimeout(() => {addVillagers()}, 30000 / numberOfLogCabins);
 }
     
     
