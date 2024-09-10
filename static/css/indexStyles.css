@@ -65,17 +65,21 @@ body {
     background-image: url("../assets/wood-background.jpg");
     background-repeat: repeat;
     opacity: 1;
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
     left: 0;
     top: 0;
     bottom: 0;
     right: 0;
-    margin: auto;
+    margin: 10vh;
     display: grid;
     align-items: center;
     justify-content: center;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto auto;
     border: 8px solid black;
+    padding: 20vh;
+
 }
 
 #close-shop-button {
@@ -103,16 +107,16 @@ body {
 }
 
 #upgrades {
+    margin: 10vh;
     position: absolute;
     background-color: gray;
     opacity: 0.5;
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
     left: 0;
     top: 0;
     bottom: 0;
     right: 0;
-    margin: auto;
     display: flex;
     align-items: center;
     justify-content: center;

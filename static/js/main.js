@@ -10,6 +10,7 @@ let numberOfSawmills = 0;
 let housingSpace = 3;
 let currentVillagers = 1;
 let currentWorkers = 1;
+let numberOfSmallPlankHouses = 0;
 
 let logs = 0;
 let stone = 0;
@@ -54,7 +55,7 @@ for(var i = 0; i < upgradeMenuElements.length; i++){
 document.getElementById("enter-shop-button").addEventListener("click", function(){
     
     document.getElementById("shop").disabled = false;
-    document.getElementById("shop").style.display = "flex";
+    document.getElementById("shop").style.display = "grid";
     document.getElementById("shop").style.opacity = 1;                    
     console.log("opened!")
     
@@ -125,7 +126,7 @@ document.getElementById("purchase-lumberjack-button").addEventListener("click", 
         let lumberImage = document.createElement("img");
         lumberImage.src = "../static/assets/LumberMan.gif";
         document.getElementById("city").appendChild(lumberImage);
-        document.getElementById("lumberjack-log-cost").innerHTML = 50 * numberOfLumberjacks + " / " + '<span class="current-log-amount">0</span>';
+        document.getElementById("lumberjack-log-cost").innerHTML = '<span class="current-log-amount">0</span>' + " / " + 50 * numberOfLumberjacks;
         document.getElementById("worker-count").innerHTML = "Current Workers: " + currentWorkers;
     }                    
 });
@@ -143,7 +144,7 @@ document.getElementById("purchase-mine-button").addEventListener("click", functi
             let mineImage = document.createElement("img");
             mineImage.src = "../static/assets/Mine-Large.png";
             document.getElementById("city").appendChild(mineImage);
-            document.getElementById("mine-log-cost").innerHTML = 80 * (numberOfMines + 1) + " / " + '<span class="current-log-amount">0</span>';
+            document.getElementById("mine-log-cost").innerHTML = '<span class="current-log-amount">0</span>' + " / " + 80 * (numberOfMines + 1);
             document.getElementById("worker-count").innerHTML = "Current Workers: " + currentWorkers;
             //Adds planks to resources display at top. This is done to show what is unlocked next.
             if (numberOfMines == 1) {
@@ -179,9 +180,9 @@ document.getElementById("purchase-sawmill-button").addEventListener("click", fun
             let sawmillImage = document.createElement("img");
             sawmillImage.src = "../static/assets/Sawmill.png";
             document.getElementById("city").appendChild(sawmillImage);
-            document.getElementById("sawmill-log-cost").innerHTML = 1000 * (numberOfSawmills + 1) + " / " + '<span class="current-log-amount">0</span>';
-            document.getElementById("sawmill-stone-cost").innerHTML = 100 * (numberOfSawmills + 1) + " / " + '<span class="current-log-amount">0</span>';
-            document.getElementById("sawmill-iron-cost").innerHTML = 20 * (numberOfSawmills + 1) + " / " + '<span class="current-log-amount">0</span>';
+            document.getElementById("sawmill-log-cost").innerHTML = '<span class="current-log-amount">0</span>' + " / " + 1000 * (numberOfSawmills + 1);
+            document.getElementById("sawmill-stone-cost").innerHTML = '<span class="current-stone-amount">0</span>' + " / " + 100 * (numberOfSawmills + 1);
+            document.getElementById("sawmill-iron-cost").innerHTML = '<span class="current-iron-amount">0</span>' + " / " + 20 * (numberOfSawmills + 1) ;
             document.getElementById("worker-count").innerHTML = "Current Workers: " + currentWorkers;
             
             /* ADD NEXT RESOURCE TEASER
@@ -199,7 +200,7 @@ document.getElementById("purchase-sawmill-button").addEventListener("click", fun
 });
 
 
-
+//Houses
 
 
 document.getElementById("purchase-log-cabin-button").addEventListener("click", function() {
@@ -212,9 +213,30 @@ document.getElementById("purchase-log-cabin-button").addEventListener("click", f
         let houseImage = document.createElement("img");
         houseImage.src = "../static/assets/log-cabin.png";
         document.getElementById("city").appendChild(houseImage);
-        document.getElementById("log-cabin-log-cost").innerHTML = 200 * numberOfLogCabins + " / " + '<span class="current-log-amount">0</span>';
+        document.getElementById("log-cabin-log-cost").innerHTML = '<span class="current-log-amount">0</span>' + " / " + 200 * numberOfLogCabins;
     }   
-})
+});
+
+
+
+document.getElementById("purchase-small-plank-house-button").addEventListener("click", function() {
+    if (logs >= 2000 * (numberOfSmallPlankHouses + 1) && planks >= 100 * (numberOfSmallPlankHouses + 1)) {
+        logs -= 2000 * (numberOfSmallPlankHouses + 1);
+        planks -= 100 * (numberOfSmallPlankHouses + 1);
+        housingSpace += 6;
+        document.getElementById("housing-space").innerHTML = "Housing Space: "  + housingSpace;
+
+        let planksHouseImage = document.createElement("img");
+        planksHouseImage.src = "../static/assets/PlankHouse.png";
+        document.getElementById("city").appendChild(planksHouseImage);
+        document.getElementById("small-plank-house-log-cost").innerHTML = '<span class="current-log-amount">0</span>' + " / " + 2000 * (numberOfSmallPlankHouses + 1);
+        document.getElementById("small-plank-house-plank-cost").innerHTML = '<span class="current-plank-amount">0</span>' + " / " + 100 * (numberOfSmallPlankHouses + 1);
+    }
+
+
+});
+
+
 
 
 //Upgrades
@@ -326,10 +348,14 @@ function addResources() {
         element.innerHTML = (Math.round(iron * 100)) / 100;
     });
 
+    Array.from(document.getElementsByClassName("current-plank-amount")).forEach(element => {
+        element.innerHTML = (Math.round(planks * 100)) / 100;
+    });
+
 
 
     
-    setTimeout(() => {addResources()}, 500);
+    setTimeout(() => {addResources()}, 1);
 }
 
 
@@ -357,7 +383,7 @@ function addVillagers() {
         document.getElementById("villager-count").innerHTML = "Villagers: " + currentVillagers;
     }
 
-    setTimeout(() => {addVillagers()}, 30000 / numberOfLogCabins);
+    setTimeout(() => {addVillagers()}, 2 / numberOfLogCabins);
 }
     
     
