@@ -37,7 +37,7 @@ body {
     top: 0;
     text-align: left;
     z-index: 5;
-    overflow: scroll;
+    overflow: hidden;
 }
 
 .stat {
@@ -109,17 +109,15 @@ body {
 }
 
 #upgrades {
-    margin: 10vh;
-    margin: 10dvh;
     position: absolute;
     background-color: gray;
     opacity: 0.5;
     width: 90%;
     height: 90%;
     left: 0;
-    top: 0;
     bottom: 0;
     right: 0;
+    margin: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -141,7 +139,9 @@ body {
     margin: 0px 60px;
 }
 
-
+#sturdier-axe-upgrade {
+    margin-top: 10vh;
+}
 
 .upgrade-button-class-border {
     border: 4px red solid;
@@ -152,10 +152,8 @@ body {
     padding: 20px;
     background-color: whitesmoke;
     rotate: 45deg;
-    width: 20vh;
-    width: 20dvh;
-    height: 20vh;
-    height: 20dvh;
+    width: 200px;
+    height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -199,6 +197,7 @@ body {
     width: fit-content;
     margin: 0px auto;
     height: fit-content;
+    z-index: 20;
 }
 
 .upgrade-cost-item-container > * {
@@ -311,6 +310,8 @@ body {
     height: fit-content;
     padding: 1px 0px;
 }
+
+/*Shop and city*/
 
 @media (max-width: 1380px) {
     #city {
@@ -432,4 +433,107 @@ body {
 }
 
 
+/*Upgrade menu*/
 
+@media (max-width: 1130px) {
+    .upgrade-button-class > p{
+        font-size: smaller;
+    }
+
+    .upgrade-button-class {
+        padding: 0px;
+        width: 140px;
+        height: 140px;
+    }
+
+    .three-by-one-upgrades > div > button {
+        margin: 38px;
+    }
+
+    .three-by-one-upgrades {
+        margin-top: 10px;
+        margin-bottom: 0px;
+    }
+}
+
+@media (max-width: 810px), (max-height: 800px) {
+    .upgrade-button-class {
+        width: 100px;
+        height: 100px;
+    }
+
+    #sturdier-axe-upgrade {
+        margin-top: 20px;
+    }
+
+    .three-by-one-upgrades > div > button {
+        margin-left: 22px;
+        margin-right: 22px;
+        margin-top: 0px;
+        margin-bottom: 0px
+    }
+
+    
+    .upgrade-button-class > p {
+        font-size: x-small;
+    }
+
+    .upgrade-button-class > p > span {
+        font-size: xx-small;
+    }
+
+    .last-three-by-one-upgrade {
+        margin-right: 0px !important;
+    }
+
+    .first-three-by-one-upgrade {
+        margin-left: 0px !important;
+    }
+
+    .three-by-one-upgrades {
+        margin: 10px 19px
+    }
+}
+
+@media (max-width: 500px), (max-height: 560px) {
+    .upgrade-button-class {
+        width: 80px;
+        height: 80px;
+    }
+
+    .upgrade-button-class > p {
+        font-size: 8px;
+    }
+
+    .upgrade-button-class > p > span {
+        font-weight: lighter;
+        font-size: 6px;
+    }
+
+}
+
+@media (max-width: 370px) {
+    .upgrade-button-class {
+        width: 60px;
+        height: 60px;
+    }
+
+    .upgrade-button-class > p {
+        font-size: 6px;
+    }
+
+    .upgrade-button-class > p > span {
+        font-weight: 300;
+        font-size: 5px;
+    }
+
+}
+
+@media (max-height: 560px) {
+    .upgrade-cost-item-container {
+        transform: scale(0.5);
+    }
+    .three-by-one-upgrades > div {
+        height: 110px
+    }
+}
