@@ -381,10 +381,8 @@ body {
 @media (max-width: 620px) {
     #shop {
         padding: 50px;
-    }
-
-    #city {
-        grid-template-columns: 128px 128px;
+        grid-template-columns: 1fr;
+        
     }
 
     #resource-stats {
@@ -398,7 +396,6 @@ body {
 
 @media (max-height: 840px) {
     #shop {
-
         padding: 30px;
         align-content: space-around !important;
         margin-top: 20vh;
