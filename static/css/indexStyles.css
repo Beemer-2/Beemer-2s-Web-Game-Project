@@ -149,8 +149,8 @@ body {
     padding: 20px;
     background-color: whitesmoke;
     rotate: 45deg;
-    width: 180px;
-    height: 180px;
+    width: 20vh;
+    height: 20vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -280,7 +280,6 @@ body {
 
 
 #city {
-    position: absolute;
 
     display: grid;
     grid-template-columns: 128px 128px 128px 128px 128px 128px 128px 128px;
@@ -294,7 +293,7 @@ body {
     right: 0;
     bottom: 0;
     margin: auto;
-
+    margin-top: 20vh;
     z-index: -1;
 }
 

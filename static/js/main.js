@@ -112,6 +112,12 @@ document.getElementById("close-upgrade-menu-button").addEventListener("click", f
     })
 });*/
 
+//worker cost for all purchases
+document.getElementById("lumberjack-worker-cost").innerHTML = '<span class="current-worker-amount">0</span>' + " / " + 1;
+document.getElementById("mine-worker-cost").innerHTML = '<span class="current-worker-amount">0</span>' + " / " + 1;
+document.getElementById("sawmill-worker-cost").innerHTML = '<span class="current-worker-amount">0</span>' + " / " + 2;
+
+
 
 //purchases
 document.getElementById("purchase-lumberjack-button").addEventListener("click", function(){
@@ -352,10 +358,12 @@ function addResources() {
         element.innerHTML = (Math.round(planks * 100)) / 100;
     });
 
-
+    Array.from(document.getElementsByClassName("current-worker-amount")).forEach(element => {
+        element.innerHTML = currentVillagers - currentWorkers;
+    });
 
     
-    setTimeout(() => {addResources()}, 500);
+    setTimeout(() => {addResources()}, 400);
 }
 
 
