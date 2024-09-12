@@ -472,13 +472,13 @@ addVillagers();
 function shopItemAmountDecider(randomNum) {
     while (true) {
         if (randomNum == 1) { // logs
-            return [" logs", Math.round((Math.floor(Math.random() * (100 - 50 + 50)) + 50) * (numberOfLumberjacks - (0.2 * numberOfLumberjacks)) * 100) / 1000, (Math.floor(Math.random() * (2000 - 1000 + 1000)) + 1000) * numberOfLumberjacks, "../static/assets/Log-small.png"]; //random amount from 2000 to 1000
+            return [" logs", Math.round((Math.floor(Math.random() * (100 - 50 + 50)) + 50) * (numberOfLumberjacks - (0.2 * numberOfLumberjacks)) * 100) / 1000, (Math.floor(Math.random() * (200 - 100 + 100)) + 100) * numberOfLumberjacks, "../static/assets/Log-small.png"]; //random amount from 2000 to 1000
         } else if (randomNum == 2 && numberOfMines >= 1) { // stone
-            return [" stone", Math.round((Math.floor(Math.random() * (200 - 100 + 100)) + 100) * (numberOfMines - (0.2 * numberOfMines)) * 100) / 1000, (Math.floor(Math.random() * (200 - 100 + 100)) + 200) * numberOfMines, "../static/assets/Stone-Redone.png"]; 
+            return [" stone", Math.round((Math.floor(Math.random() * (200 - 100 + 100)) + 100) * (numberOfMines - (0.2 * numberOfMines)) * 100) / 1000, (Math.floor(Math.random() * (20 - 10 + 10)) + 20) * numberOfMines, "../static/assets/Stone-Redone.png"]; 
         } else if (randomNum == 3 && numberOfMines >= 1) { // iron
-            return [" iron", Math.round((Math.floor(Math.random() * (20 - 10 + 10)) + 10) * (numberOfMines - (0.2 * numberOfMines)) * 100) / 1000, (Math.floor(Math.random() * (20 - 10 + 10)) + 10) * numberOfMines, "../static/assets/Iron-ore.png"];
+            return [" iron", Math.round((Math.floor(Math.random() * (20 - 10 + 10)) + 10) * (numberOfMines - (0.2 * numberOfMines)) * 100) / 1000, (Math.floor(Math.random() * (2 - 1 + 1)) + 1) * numberOfMines, "../static/assets/Iron-ore.png"];
         } else if (randomNum == 4 && numberOfSawmills >= 1)  { // planks
-            return [" planks", Math.round((Math.floor(Math.random() * (20 - 10 + 10)) + 10) * (numberOfSawmills - (0.2 * numberOfSawmills)) * 100) / 1000, (Math.floor(Math.random() * (20 - 10 + 10)) + 10) * numberOfSawmills, "../static/assets/Plank.png"];
+            return [" planks", Math.round((Math.floor(Math.random() * (20 - 10 + 10)) + 10) * (numberOfSawmills - (0.2 * numberOfSawmills)) * 100) / 1000, (Math.floor(Math.random() * (2 - 1 + 1)) + 1) * numberOfSawmills, "../static/assets/Plank.png"];
         } else {
             randomNum = Math.floor(Math.random() * (4 - 1 + 1)) + 1;
         }
