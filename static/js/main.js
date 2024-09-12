@@ -36,7 +36,7 @@ let upgradeMenuElements = document.getElementById("upgrades").getElementsByTagNa
 
 
 //Shop
-let shopEnabled = false;
+let marketEnabled = false;
 
 
 //Disables menus so they don't appear when loading site.
@@ -319,15 +319,15 @@ document.getElementById("bigger-minecart-upgrade").addEventListener("click", fun
 
 
 document.getElementById("open-market-button").addEventListener("click", function() {
-    console.log(shopEnabled)
-    if (shopEnabled) {
+    console.log(marketEnabled)
+    if (marketEnabled) {
         document.getElementById("market-menu").style.display = "none";
         document.getElementById("resource-stats").style.zIndex = 5;
-        shopEnabled = false;
+        marketEnabled = false;
     } else {
         document.getElementById("market-menu").style.display = "flex";
         document.getElementById("resource-stats").style.zIndex = 50;
-        shopEnabled = true;
+        marketEnabled = true;
     }
 });
 
@@ -343,7 +343,7 @@ let item1Amount = "";
 let item2Amount = "";
 let item3Amount = "";
 
-document.getElementById("purchase-shop-item-1").addEventListener("click", function() {
+document.getElementById("purchase-market-item-1").addEventListener("click", function() {
     console.log("clocked")
     if (gold >= item1Price) {
         gold -= item1Price;
@@ -359,7 +359,7 @@ document.getElementById("purchase-shop-item-1").addEventListener("click", functi
     }
 });
 
-document.getElementById("purchase-shop-item-2").addEventListener("click", function() {
+document.getElementById("purchase-market-item-2").addEventListener("click", function() {
     if (gold >= item2Price) {
         gold -= item2Price;
         if (item2Type == " logs") {
@@ -374,7 +374,7 @@ document.getElementById("purchase-shop-item-2").addEventListener("click", functi
     }
 });
 
-document.getElementById("purchase-shop-item-3").addEventListener("click", function() {
+document.getElementById("purchase-market-item-3").addEventListener("click", function() {
     if (gold >= item3Price) {
         gold -= item3Price;
         if (item3Type == " logs") {
@@ -469,7 +469,7 @@ function addVillagers() {
 addVillagers();
 
 
-function shopItemAmountDecider(randomNum) {
+function marketItemAmountDecider(randomNum) {
     while (true) {
         if (randomNum == 1) { // logs
             return [" logs", Math.round((Math.floor(Math.random() * (100 - 50 + 50)) + 50) * (numberOfLumberjacks - (0.2 * numberOfLumberjacks)) * 100) / 1000, (Math.floor(Math.random() * (200 - 100 + 100)) + 100) * numberOfLumberjacks, "../static/assets/Log-small.png"]; //random amount from 2000 to 1000
@@ -485,40 +485,40 @@ function shopItemAmountDecider(randomNum) {
     }
 }
 
-function shopReset() {
+function marketReset() {
     console.log("reset shop!");
     let randomNum = Math.floor(Math.random() * (4 - 1 + 1)) + 1;
     let costAndAmountArray = [];
     
-    costAndAmountArray = shopItemAmountDecider(randomNum);
+    costAndAmountArray = marketItemAmountDecider(randomNum);
     item1Price = costAndAmountArray[1];
     item1Type = costAndAmountArray[0];
     item1Amount = costAndAmountArray[2];
-    document.getElementById("shop-item-1-item-amount").innerHTML = "You get: " + costAndAmountArray[2] + costAndAmountArray[0];
-    document.getElementById("shop-item-1-image").src = costAndAmountArray[3];
-    document.getElementById("shop-item-1-cost").innerHTML = "You give: " + costAndAmountArray[1];
+    document.getElementById("market-item-1-item-amount").innerHTML = "You get: " + costAndAmountArray[2] + costAndAmountArray[0];
+    document.getElementById("market-item-1-image").src = costAndAmountArray[3];
+    document.getElementById("market-item-1-cost").innerHTML = "You give: " + costAndAmountArray[1];
     
     randomNum = Math.floor(Math.random() * (4 - 1 + 1)) + 1
-    costAndAmountArray = shopItemAmountDecider(randomNum);
+    costAndAmountArray = marketItemAmountDecider(randomNum);
     item2Price = costAndAmountArray[1];
     item2Type = costAndAmountArray[0];
     item2Amount = costAndAmountArray[2];
-    document.getElementById("shop-item-2-item-amount").innerHTML = "You get: " + costAndAmountArray[2] + costAndAmountArray[0];
-    document.getElementById("shop-item-2-image").src = costAndAmountArray[3];
-    document.getElementById("shop-item-2-cost").innerHTML = "You give: " + costAndAmountArray[1];
+    document.getElementById("market-item-2-item-amount").innerHTML = "You get: " + costAndAmountArray[2] + costAndAmountArray[0];
+    document.getElementById("market-item-2-image").src = costAndAmountArray[3];
+    document.getElementById("market-item-2-cost").innerHTML = "You give: " + costAndAmountArray[1];
     
     randomNum = Math.floor(Math.random() * (4 - 1 + 1)) + 1
-    costAndAmountArray = shopItemAmountDecider(randomNum);
+    costAndAmountArray = marketItemAmountDecider(randomNum);
     item3Price = costAndAmountArray[1];
     item3Type = costAndAmountArray[0];
     item3Amount = costAndAmountArray[2];
-    document.getElementById("shop-item-3-item-amount").innerHTML = "You get: " + costAndAmountArray[2] + costAndAmountArray[0];
-    document.getElementById("shop-item-3-image").src = costAndAmountArray[3];
-    document.getElementById("shop-item-3-cost").innerHTML = "You give: " + costAndAmountArray[1];
+    document.getElementById("market-item-3-item-amount").innerHTML = "You get: " + costAndAmountArray[2] + costAndAmountArray[0];
+    document.getElementById("market-item-3-image").src = costAndAmountArray[3];
+    document.getElementById("market-item-3-cost").innerHTML = "You give: " + costAndAmountArray[1];
 
-    setTimeout(() => {shopReset()}, 120000);
+    setTimeout(() => {marketReset()}, 120000);
 }
 
-shopReset()
+marketReset()
 
 
