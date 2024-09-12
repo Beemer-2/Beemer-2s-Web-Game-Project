@@ -51,8 +51,7 @@
     grid-template-columns: auto auto;
     object-fit: contain;
     gap: 8px 0px;
-    width: 34vh;
-    width: 34dvh;
+    width: 100%;
     margin: 20px;
     padding: 6px
 }
@@ -162,7 +161,7 @@ body {
     border: 8px solid black;
     padding: 20vh;
     padding: 20dvh;
-    z-index: 4;
+    z-index: 6;
 }
 
 #close-shop-button {
@@ -453,6 +452,9 @@ body {
         margin: 0px;
         padding: 18px
     }
+    #market-sign {
+        margin-left: 40vh;
+    }
 }
 
 @media (max-width: 620px) {
@@ -471,6 +473,9 @@ body {
     
     #city {
         grid-template-columns: 128px 128px;
+    }
+    #market-sign {
+        margin-left: 28vh;
     }
 }
 
@@ -513,6 +518,10 @@ body {
 /*Upgrade menu*/
 
 @media (max-width: 1130px) {
+    #market-menu > button {
+        margin: 6px
+    }
+
     .upgrade-button-class > p{
         font-size: smaller;
     }
@@ -586,6 +595,9 @@ body {
         font-weight: lighter;
         font-size: 6px;
     }
+    #market-sign {
+        margin-left: 22vh;
+    }
 
 }
 
@@ -604,6 +616,7 @@ body {
         font-size: 5px;
     }
 
+
 }
 
 @media (max-height: 560px) {
@@ -612,5 +625,17 @@ body {
     }
     .three-by-one-upgrades > div {
         height: 110px
+    }
+}
+
+@media (max-width: 460px) {
+    #market-sign {
+        content: url("../assets/Shop-sign-192.png")
+    }
+}
+
+@media (max-width: 380px) {
+    #market-sign {
+        margin-left: 19vh;
     }
 }
