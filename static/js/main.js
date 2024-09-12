@@ -34,6 +34,11 @@ let stoneMultiplier = 0;
 let shopElements = document.getElementById("shop").getElementsByTagName('*');
 let upgradeMenuElements = document.getElementById("upgrades").getElementsByTagName('*');
 
+
+//Shop
+let shopEnabled = false;
+
+
 //Disables menus so they don't appear when loading site.
 document.getElementById("upgrades").style.opacity = 0;
 document.getElementById("upgrades").style.display = "none";
@@ -310,6 +315,80 @@ document.getElementById("bigger-minecart-upgrade").addEventListener("click", fun
 });
 
 
+//Market
+
+
+document.getElementById("open-market-button").addEventListener("click", function() {
+    console.log(shopEnabled)
+    if (shopEnabled) {
+        document.getElementById("market-menu").style.display = "none";
+        document.getElementById("resource-stats").style.zIndex = 5;
+        shopEnabled = false;
+    } else {
+        document.getElementById("market-menu").style.display = "flex";
+        document.getElementById("resource-stats").style.zIndex = 50;
+        shopEnabled = true;
+    }
+});
+
+//Initialize prices
+//Sets prices high to prevent race conditions that might happen
+let item1Price = 1000000;
+let item2Price = 1000000;
+let item3Price = 1000000;
+let item1Type = "";
+let item2Type = "";
+let item3Type = "";
+let item1Amount = "";
+let item2Amount = "";
+let item3Amount = "";
+
+document.getElementById("purchase-shop-item-1").addEventListener("click", function() {
+    console.log("clocked")
+    if (gold >= item1Price) {
+        gold -= item1Price;
+        if (item1Type == " logs") {
+            logs += item1Amount
+        } else if (item1Type == " stone") {
+            stone += item1Amount
+        } else if (item1Type == " iron") {
+            iron += item1Amount
+        } else {
+            planks += item1Amount
+        }
+    }
+});
+
+document.getElementById("purchase-shop-item-2").addEventListener("click", function() {
+    if (gold >= item2Price) {
+        gold -= item2Price;
+        if (item2Type == " logs") {
+            logs += item2Amount
+        } else if (item2Type == " stone") {
+            stone += item2Amount
+        } else if (item2Type == " iron") {
+            iron += item2Amount
+        } else {
+            planks += item2Amount
+        }
+    }
+});
+
+document.getElementById("purchase-shop-item-3").addEventListener("click", function() {
+    if (gold >= item3Price) {
+        gold -= item3Price;
+        if (item3Type == " logs") {
+            logs += item3Amount
+        } else if (item3Type == " stone") {
+            stone += item3Amount
+        } else if (item3Type == " iron") {
+            iron += item3Amount
+        } else {
+            planks += item3Amount
+        }
+    }
+});
+
 
 console.log(Math.round((1.2 % 1) * 100) / 100)
 
@@ -371,18 +450,6 @@ function addResources() {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 addResources();
 
 
@@ -395,9 +462,63 @@ function addVillagers() {
         document.getElementById("villager-count").innerHTML = "Villagers: " + currentVillagers;
     }
 
-    setTimeout(() => {addVillagers()}, 30000 / numberOfLogCabins);
+    setTimeout(() => {addVillagers()}, 3000 / numberOfLogCabins);
 }
     
     
 addVillagers();
+
+
+function shopItemAmountDecider(randomNum) {
+    while (true) {
+        if (randomNum == 1) { // logs
+            return [" logs", Math.round((Math.floor(Math.random() * (100 - 50 + 50)) + 50) * (numberOfLumberjacks - (0.2 * numberOfLumberjacks)) * 100) / 1000, (Math.floor(Math.random() * (2000 - 1000 + 1000)) + 1000) * numberOfLumberjacks, "../static/assets/Log-small.png"]; //random amount from 2000 to 1000
+        } else if (randomNum == 2 && numberOfMines >= 1) { // stone
+            return [" stone", Math.round((Math.floor(Math.random() * (200 - 100 + 100)) + 100) * (numberOfMines - (0.2 * numberOfMines)) * 100) / 1000, (Math.floor(Math.random() * (200 - 100 + 100)) + 200) * numberOfMines, "../static/assets/Stone-Redone.png"]; 
+        } else if (randomNum == 3 && numberOfMines >= 1) { // iron
+            return [" iron", Math.round((Math.floor(Math.random() * (20 - 10 + 10)) + 10) * (numberOfMines - (0.2 * numberOfMines)) * 100) / 1000, (Math.floor(Math.random() * (20 - 10 + 10)) + 10) * numberOfMines, "../static/assets/Iron-ore.png"];
+        } else if (randomNum == 4 && numberOfSawmills >= 1)  { // planks
+            return [" planks", Math.round((Math.floor(Math.random() * (20 - 10 + 10)) + 10) * (numberOfSawmills - (0.2 * numberOfSawmills)) * 100) / 1000, (Math.floor(Math.random() * (20 - 10 + 10)) + 10) * numberOfSawmills, "../static/assets/Plank.png"];
+        } else {
+            randomNum = Math.floor(Math.random() * (4 - 1 + 1)) + 1;
+        }
+    }
+}
+
+function shopReset() {
+    console.log("reset shop!");
+    let randomNum = Math.floor(Math.random() * (4 - 1 + 1)) + 1;
+    let costAndAmountArray = [];
+    
+    costAndAmountArray = shopItemAmountDecider(randomNum);
+    item1Price = costAndAmountArray[1];
+    item1Type = costAndAmountArray[0];
+    item1Amount = costAndAmountArray[2];
+    document.getElementById("shop-item-1-item-amount").innerHTML = "You get: " + costAndAmountArray[2] + costAndAmountArray[0];
+    document.getElementById("shop-item-1-image").src = costAndAmountArray[3];
+    document.getElementById("shop-item-1-cost").innerHTML = "You give: " + costAndAmountArray[1];
+    
+    randomNum = Math.floor(Math.random() * (4 - 1 + 1)) + 1
+    costAndAmountArray = shopItemAmountDecider(randomNum);
+    item2Price = costAndAmountArray[1];
+    item2Type = costAndAmountArray[0];
+    item2Amount = costAndAmountArray[2];
+    document.getElementById("shop-item-2-item-amount").innerHTML = "You get: " + costAndAmountArray[2] + costAndAmountArray[0];
+    document.getElementById("shop-item-2-image").src = costAndAmountArray[3];
+    document.getElementById("shop-item-2-cost").innerHTML = "You give: " + costAndAmountArray[1];
+    
+    randomNum = Math.floor(Math.random() * (4 - 1 + 1)) + 1
+    costAndAmountArray = shopItemAmountDecider(randomNum);
+    item3Price = costAndAmountArray[1];
+    item3Type = costAndAmountArray[0];
+    item3Amount = costAndAmountArray[2];
+    document.getElementById("shop-item-3-item-amount").innerHTML = "You get: " + costAndAmountArray[2] + costAndAmountArray[0];
+    document.getElementById("shop-item-3-image").src = costAndAmountArray[3];
+    document.getElementById("shop-item-3-cost").innerHTML = "You give: " + costAndAmountArray[1];
+
+    setTimeout(() => {shopReset()}, 120000);
+}
+
+shopReset()
+
 
