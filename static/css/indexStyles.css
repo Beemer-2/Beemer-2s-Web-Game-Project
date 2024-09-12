@@ -382,7 +382,6 @@ body {
     #shop {
         padding: 50px;
         grid-template-columns: 1fr;
-        
     }
 
     #resource-stats {
@@ -391,6 +390,10 @@ body {
 
     .purchase-buttons {
         padding: 8px;
+    }
+    
+    #city {
+        grid-template-columns: 128px 128px;
     }
 }
 

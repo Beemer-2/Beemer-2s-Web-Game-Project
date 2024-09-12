@@ -15,6 +15,7 @@ let numberOfSmallPlankHouses = 0;
 let logs = 0;
 let stone = 0;
 let gold = 0;
+let coal = 0;
 let iron = 0;
 let planks = 0;
 
@@ -329,6 +330,9 @@ function addResources() {
 
         iron += 0.02 * numberOfMines * globalMultiplier;
         document.getElementById("iron").innerHTML = "Iron: " + (Math.round(iron * 100)) / 100; 
+
+        /*coal += 0.04 * numberOfMines * globalMultiplier;
+        document.getElementById("coal").innerHTML = "Coal: " + (Math.round(coal * 100)) / 100;*/
     }
 
     if (numberOfSawmills >= 1) {
