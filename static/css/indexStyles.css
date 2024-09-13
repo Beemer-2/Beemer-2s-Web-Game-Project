@@ -143,11 +143,12 @@ body {
 
 #shop {
     overflow: scroll;
-    position: absolute;
+       /* disables scrollbar for most browsers */
+    position: fixed;
     background-image: url("../assets/wood-background.jpg");
     background-repeat: repeat;
     opacity: 1;
-    height: 90%;
+    height: 100%;
     left: 0;
     bottom: 0;
     right: 0;
@@ -164,10 +165,22 @@ body {
     z-index: 6;
 }
 
+#shop::-webkit-scrollbar {
+    display: none;
+}
+
 #close-shop-button {
+    position: fixed;
     border-top: 8px solid black;
     border-right: 8px solid black;
     border-left: 8px solid black;
+    padding: 10px;
+    width: 90%;
+    height: 10%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
 }
 
 #villager-stats {
@@ -188,11 +201,11 @@ body {
 }
 
 #upgrades {
-    position: absolute;
-    background-color: gray;
-    opacity: 0.5;
-    width: 90%;
-    height: 90%;
+    position: fixed;
+    background-image: url("../assets/Upgrade-background.png");
+    background-repeat: repeat;
+    width: 100%;
+    height: 100%;
     left: 0;
     bottom: 0;
     right: 0;
@@ -338,17 +351,8 @@ body {
     font-size: larger;
 }
 
-#close-shop-button {
-    position: absolute;
-    padding: 10px;
-    width: 90%;
-    height: 10%;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    margin: auto;
-    
-}
+
+
 
 
 #close-upgrade-menu-button {
@@ -462,6 +466,9 @@ body {
         padding: 50px;
         grid-template-columns: 1fr;
     }
+    #shop > div:last-of-type {
+        margin-bottom: 100px;
+    }
 
     #resource-stats {
         width: 160px;
@@ -487,9 +494,6 @@ body {
         margin-top: 20dvh;
     }
 
-    #close-shop-button {
-        position: fixed;
-    }
     
     .purchase-buttons {
         padding: 2px

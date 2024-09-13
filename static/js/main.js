@@ -232,9 +232,10 @@ document.getElementById("purchase-log-cabin-button").addEventListener("click", f
 
 
 document.getElementById("purchase-small-plank-house-button").addEventListener("click", function() {
-    if (logs >= 2000 * (numberOfSmallPlankHouses + 1) && planks >= 100 * (numberOfSmallPlankHouses + 1)) {
+    if (logs >= 2000 * (numberOfSmallPlankHouses + 1) && planks >= 20 * (numberOfSmallPlankHouses + 1)) {
         logs -= 2000 * (numberOfSmallPlankHouses + 1);
-        planks -= 100 * (numberOfSmallPlankHouses + 1);
+        planks -= 20 * (numberOfSmallPlankHouses + 1);
+        numberOfSmallPlankHouses += 1;
         housingSpace += 6;
         document.getElementById("housing-space").innerHTML = "Housing Space: "  + housingSpace;
 
@@ -242,7 +243,7 @@ document.getElementById("purchase-small-plank-house-button").addEventListener("c
         planksHouseImage.src = "../static/assets/PlankHouse.png";
         document.getElementById("city").appendChild(planksHouseImage);
         document.getElementById("small-plank-house-log-cost").innerHTML = '<span class="current-log-amount">0</span>' + " / " + 2000 * (numberOfSmallPlankHouses + 1);
-        document.getElementById("small-plank-house-plank-cost").innerHTML = '<span class="current-plank-amount">0</span>' + " / " + 100 * (numberOfSmallPlankHouses + 1);
+        document.getElementById("small-plank-house-plank-cost").innerHTML = '<span class="current-plank-amount">0</span>' + " / " + 20 * (numberOfSmallPlankHouses + 1);
     }
 
 
@@ -462,7 +463,7 @@ function addVillagers() {
         document.getElementById("villager-count").innerHTML = "Villagers: " + currentVillagers;
     }
 
-    setTimeout(() => {addVillagers()}, 3000 / numberOfLogCabins);
+    setTimeout(() => {addVillagers()}, 30000 / numberOfLogCabins);
 }
     
     
