@@ -161,7 +161,7 @@ body {
     grid-template-rows: auto auto;
     border: 8px solid black;
     padding: 20vh;
-    padding: 20dvh;
+    padding: 20svh;
     z-index: 6;
 }
 
@@ -491,7 +491,7 @@ body {
         padding: 30px;
         align-content: space-around !important;
         margin-top: 20vh;
-        margin-top: 20dvh;
+        margin-top: 20svh;
     }
 
     
